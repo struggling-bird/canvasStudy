@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+    <title></title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+        }
+        .ball1{
+            width:150px;
+            height:150px;
+            line-height: 150px;
+            color: #ffffff;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: darkred;
+            position: relative;
+            top:400px;
+            left: 80px;
+            display: none;
+        }
+        .show{
+            -moz-animation:ball .5s ease 0 infinite;
+            -webkit-animation:ball .5s ease 0 infinite;
+            -o-animation:ball .5s ease 0 infinite;
+            -ms-animation:ball .5s ease 0 infinite;
+            animation:ball .5s ease 0 infinite;
+        }
+        @-moz-keyframes ball{
+            0%{-moz-transform:translate(0,0);}
+            25%{-moz-transform:translate(0,10px);}
+            50%{-moz-transform:translate(0,-10px);}
+            75%{-moz-transform:translate(0,10px);}
+            100%{-moz-transform:translate(0, 0);}
+        }
+        @-webkit-keyframes ball{
+            0%{-webkit-transform:translate(0,0px);}
+            25%{-webkit-transform:translate(0,10px);}
+            50%{-webkit-transform:translate(0,-10px);}
+            75%{-webkit-transform:translate(0,10px);}
+            100%{-webkit-transform:translate(0, 0);}
+        }
+        @-o-keyframes ball{
+            0%{-o-transform:translate(0,0px);}
+            25%{-o-transform:translate(0,10px);}
+            50%{-o-transform:translate(0,-10px);}
+            75%{-o-transform:translate(0,10px);}
+            100%{-o-transform:translate(0, 0);}
+        }
+        @-ms-keyframes ball{
+            0%{-ms-transform:translate(0,0);}
+            25%{-ms-transform:translate(0,10px);}
+            50%{-ms-transform:translate(0,-10px);}
+            75%{-ms-transform:translate(0,10px);}
+            100%{-ms-transform:translate(0, 0);}
+        }
+        @keyframes ball{
+            0%{transform:translate(0,0);}
+            25%{transform:translate(0,10px);}
+            50%{transform:translate(0,-10px);}
+            75%{transform:translate(0,10px);}
+            100%{transform:translate(0, 0);}
+        }
+    </style>
+</head>
+<body>
+<div id="to" style="width: 1000px; height:580px;position: relative">
+    <canvas id="canvas" width="1000" height="580" style="border:1px solid red;position: absolute;">
+        <h2>低版本浏览器兼容处理</h2>
+    </canvas>
+    <div class="ball1">经过了第一个圆~~~</div>
+</div>
+
+<script src="jquery-1.7.2.min.js"></script>
+<script src="util.min.js"></script>
+<script src="draw.js"></script>
+<script>
+    var canvas = document.getElementById("canvas"),
+            util = jQuery.myUtil,
+            context = canvas.getContext("2d");
+
+    context.strokeStyle = "green";//绘线颜色
+    context.lineWidth = 2;//线宽
+    /*第一步*/
+    draw1(context,125, {x:162, y: 500}, 200, step2, false, function(end){
+        if(Math.abs(end - 270) < 5){
+            console.log("出现第一个圆");
+            $(".ball1").addClass("show").show();
+        }
+        return end>=(180+130);
+    });
+    /*第二步*/
+    function step2(){
+        draw2(context, {x:240,y: 402},{x:314,y: 469}, step3, function(p, endPoint){
+            return Math.ceil(p.x) >= endPoint.x;
+        });
+    }
+    /*第三步*/
+    function step3(){
+        draw1(context,125, {x: 375, y: 359}, 120, step4, true, function(end){
+            if(Math.abs(end - 90) < 5){
+                console.log("出现第二个圆");
+            }
+            return end<=30;
+        });
+    }
+    /*第四步*/
+    function step4(){
+        draw2(context, {x:479,y: 429},{x:560,y: 307}, step5, function(p, endPoint){
+            return endPoint.x - Math.ceil(p.x) < 5;
+        });
+    }
+    /*第五步*/
+    function step5(){
+        draw1(context, 100, {x: 638, y: 370}, 215, step6, false, function(end){
+            if(Math.abs(end - 270) < 5){
+                console.log("出现第三个圆");
+            }
+            return end>=325;
+        });
+    }
+    /*第六步*/
+    function step6(){
+        draw1(context, 100, {x: 805, y: 260}, 152, step7, true, function(end){
+            if(Math.abs(end - 90) < 5){
+                console.log("出现第四个圆");
+            }
+            return end<=10;
+        });
+    }
+    /*第七步*/
+    function step7(){
+        draw2(context, {x:904,y: 280},{x:907,y: 167}, function(){
+            /*绘制最终箭头*/
+            draw2(context, {x:907,y:173}, {x:887,y:185},function(){},function(p, endPoint){
+                return Math.abs(endPoint.x - Math.ceil(p.x)) < 5;
+            });
+            draw2(context, {x:907,y:173}, {x:927,y:185},function(){},function(p, endPoint){
+                return Math.abs(endPoint.x - Math.ceil(p.x)) < 5;
+            });
+        }, function(p, endPoint){
+            return Math.abs(endPoint.y - Math.ceil(p.y)) < 5;
+        });
+    }
+</script>
+</body>
+</html>

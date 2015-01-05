@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link href="css/colpick.css" rel="stylesheet" type="text/css">
+    <style>
+        html,body{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+        }
+        ul,li{
+            list-style: none;
+            padding:0;
+            margin:0;
+        }
+        #toCanvas{
+            width:900px;
+            border: 1px solid darkred;
+            height: auto;
+            margin-left:350px;
+            padding:0px;
+        }
+        canvas{
+            border: 1px solid #000000;
+            display: block;
+        }
+        .handle{
+            width:620px;
+            position: absolute;
+            top:0;
+            right:0;
+        }
+        .handle li{
+            display: inline-block;
+            float:left;
+            background-color: darkgrey;
+            margin-left:5px;
+        }
+        tr td:first-child{
+            text-align: center;
+        }
+        .add, .color{
+            display: inline-block;
+            width:20px;
+            height:20px;
+            margin:0 5px 0 0;
+            padding:0;
+        }
+        .color{
+            background-color: rgba(0,0,0,1);
+            border:1px solid #000000;
+        }
+        .add{
+            background-color: #000000;
+            border:1px solid darkgray;
+        }
+        .add:active{
+            margin-top:2px;
+        }
+        .code{
+            min-height: 20px;
+            max-height: 380px;
+            height:auto;
+            overflow: auto;
+            background-color: lightblue;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+<body>
+<div id="toCanvas">
+    <canvas id="canvas" width="900" height="600">
+
+    </canvas>
+</div>
+<div class="handle">
+    <form id="form" style="display: inline-block;">
+        <table>
+            <tr>
+                <td>圆1</td>
+                <td>x:<input type="number" min="0" id="x1" value="200"></td>
+                <td>y:<input type="number" min="0" id="y1" value="50"></td>
+                <td>r:<input type="number" min="0" id="r1" value="20"></td>
+            </tr>
+            <tr>
+                <td>圆2</td>
+                <td>x:<input type="number" min="0" id="x2" value="200"></td>
+                <td>y:<input type="number" min="0" id="y2" value="200"></td>
+                <td>r:<input type="number" min="0" id="r2" value="50"></td>
+            </tr>
+            <tr style="height: 30px;">
+                <td>添加渐变色</td>
+                <td colspan="3">
+                    <a href="javascript:void(0);"><img src="img/icon/add.png" class="add"></a>
+                    <span class="colorStops"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>透明度</td>
+                <td><input type="number" id="opacity" min="0" max="1" step="0.1" value="1"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    显示辅助圆：<input type="checkbox" id="showBorder">
+                    背景色：<span class="color" id="bgColor"></span>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <p class="code">
+
+    </p>
+</div>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/colpick.js"></script>
+<script src="js/util.js"></script>
+<script src="js/gradient.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <style>
+        html,body{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+        }
+        ul,li{
+            list-style: none;
+            padding:0;
+            margin:0;
+        }
+        #toCanvas{
+            width:900px;
+            border: 1px solid darkred;
+            height: auto;
+            margin:0 auto;
+            padding:0px;
+        }
+        canvas{
+            border: 1px solid #000000;
+            display: block;
+        }
+        .handle{
+            width:900px;
+            margin:0 auto;
+        }
+        .handle li{
+            display: inline-block;
+            float:left;
+            background-color: darkgrey;
+            margin-left:5px;
+        }
+    </style>
+</head>
+<body>
+<div id="toCanvas">
+    <canvas id="canvas" width="900" height="600">
+
+    </canvas>
+</div>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/fish.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+.leftMenu{
+    width:100%;
+}
+.leftMenu li{
+    width:30px;
+    min-height:30px;
+    margin:2px auto;
+    border: 1px solid rgb(58, 63, 65);
+    font-size: 0.5em;
+    line-height: 30px;
+    text-align: center;
+    color:#ffffff;
+}
+.leftMenu li img{
+    display: block;
+    margin:0 auto;
+}
+.leftMenu .on{
+    border:1px solid #ffffff;
+}
+.colorPick{
+    height:55px;
+}
+.colpick{
+    z-index: 1000;
+}
+.colorPick #strokeColor,.colorPick #fillColor{
+    border: 1px solid #ffffff;
+}
+.colorPick #strokeColor{
+    width:30px;
+    height:30px;
+    margin:0 auto;
+    z-index: 100;
+    position: relative;
+    left:-5px;
+    top:5px;
+    background-color: #000000;
+}
+.colorPick #fillColor{
+    height:30px;
+    width:30px;
+    margin:0 auto;
+    z-index: 99;
+    position: relative;
+    left:8px;
+    top:-10px;
+    background-color: #ffffff;
+}
